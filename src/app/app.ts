@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { MovieList } from './components/movie-list/movie-list';
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [],
+  imports: [MovieList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

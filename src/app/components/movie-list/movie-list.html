@@ -1,1 +1,12 @@
-<p>movie-list works!</p>
+<!-- Condicionales -->
+ @if(loading()) {
+    <p>Cargando...</p>
+ }
+
+ @if (error()) {
+    <p class="error">{{error()}}</p>
+ }
+
+ @for (movie of movies(); track movie.id) {
+    <div>{{ movie.titulo }}</div>
+ }
