@@ -1,11 +1,13 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MovieService } from '../../services/movie-service';
 import { Movie } from '../../models/movie-model/movie-model-module';
+import { MovieCard } from "../movie-card/movie-card";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [],
+  imports: [MovieCard, CommonModule],
   templateUrl: './movie-list.html',
   styleUrl: './movie-list.css',
 })
