@@ -1,1 +1,17 @@
-<p>movie-card works!</p>
+<div class="movie-card">
+   <!-- Imagen -->
+    <img [src]="movie.poster" [alt]="movie.titulo">
+
+    <!-- Titulo-->
+     <h3>{{ movie.titulo }}</h3>
+    <!--Calificacion-->
+     <p>⭐ {{ movie.calificacion }}/10</p>
+
+     <!--Anio de lanzamiento-->
+    <p>{{ movie.lanzamiento }}</p>
+
+    <!--Generos-->
+    <p>{{ movie.genero.join(', ') }}</p>
+
+    <!--Sinopsis corta-->
+    <p>{{ movie.sinopsis | truncate:150:'...'}}</p>
