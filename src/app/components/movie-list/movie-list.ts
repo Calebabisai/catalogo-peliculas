@@ -15,6 +15,7 @@ export class MovieList {
   movies = signal<Movie[]>([])
   loading = signal<boolean>(false)
   error = signal<string>('')
+  searchTerm = signal<string>('')
   
   constructor(private movieService: MovieService) {
     this.loadMovies()
@@ -34,6 +35,29 @@ export class MovieList {
         console.log('Error:', err)
       }
     });
+  }
+
+  onSearch() {
+    const term = this.searchTerm();
+
+    if(!term || term.trim() === '') {
+      this.loadMovies();
+      return;
+    }
+    this.loading.set(true);
+    this.error.set('');
+    //Llamar al servicio y hacer suscribe
+    this.movieService.searchMovies(term).subscribe({
+      next:(data) => {
+        this.movies.set(data);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        this.error.set('Error al buscar peliculas');
+        this.loading.set(false);
+        console.log('Error:', err)
+      }
+    })
   }
 }
  

@@ -40,12 +40,14 @@ export class MovieService {
   }
 
   addMovie (movie: Movie): Observable<Movie> {
-    return this.http.post<Movie>(this.apiUrl, movie);
+    return this.http.post<Movie>(`${this.apiUrl}/movie`, movie);
   }
 
   deleteMovie (id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+
 
   private transformMovie(movie: any) : Movie {
     return {

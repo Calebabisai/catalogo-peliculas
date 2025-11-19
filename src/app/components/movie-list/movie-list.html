@@ -1,5 +1,12 @@
 <!-- Condicionales -->
- @if(loading()) {
+<input
+   type="text"
+   placeholder="Buscar peliculas"
+   [value]="searchTerm()"
+   (input)="searchTerm.set($event.target.value); onSearch()"
+>
+
+@if(loading()) {
     <p>Cargando...</p>
  }
 

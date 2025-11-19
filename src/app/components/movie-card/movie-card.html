@@ -8,10 +8,10 @@
      <p>⭐ {{ movie.calificacion }}/10</p>
 
      <!--Anio de lanzamiento-->
-    <p>{{ movie.lanzamiento }}</p>
+    <p>Lanzamiento: {{ movie.lanzamiento }}</p>
 
     <!--Generos-->
-    <p>{{ movie.genero.join(', ') }}</p>
+    <p>Genero: {{ movie.genero.join(', ') }}</p>
 
     <!--Sinopsis corta-->
-    <p>{{ movie.sinopsis | truncate:150:'...'}}</p>
+    <p>Sinopsis: {{ movie.sinopsis | truncate:150:'...'}}</p>
