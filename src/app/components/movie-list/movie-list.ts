@@ -16,6 +16,15 @@ export class MovieList {
   loading = signal<boolean>(false)
   error = signal<string>('')
   searchTerm = signal<string>('')
+  genres = signal<{id: number; name: string} [] >([
+    {id:28, name: "Accion"},
+    {id:878, name: "Ciencia ficcion"},
+    {id:18, name: "Drama"},
+    {id:27, name: "Terror"},
+    {id:12, name: "Romance"},
+    {id:35, name: "Comedia"},
+  ]);
+  selectedGenre = signal<number>(0);
   
   constructor(private movieService: MovieService) {
     this.loadMovies()
@@ -55,7 +64,30 @@ export class MovieList {
       error: (err) => {
         this.error.set('Error al buscar peliculas');
         this.loading.set(false);
-        console.log('Error:', err)
+        console.error('Error:', err)
+      }
+    })
+  }
+
+  filterByGenre(genreId: number) {
+    this.selectedGenre.set(genreId);
+
+    if(genreId === 0) {
+      this.loadMovies();
+      return;
+    }
+    this.loading.set(true);
+    this.error.set('');
+    //Llamar al servicio y hacer suscribe
+    this.movieService.getMoviesByGenre(genreId).subscribe({
+      next: (data) => {
+        this.movies.set(data)
+        this.loading.set(false)
+      },
+      error: (err) => {
+        this.error.set('Error al filtrar peliculas');
+        this.loading.set(false);
+        console.error('Error:', err)
       }
     })
   }

@@ -33,9 +33,9 @@ export class MovieService {
     .pipe(map((response) => this.transformMovies(response.results)));
   }
 
-  getMoviesByGenre(genre: string): Observable<Movie[]>{
+  getMoviesByGenre(genreId: number): Observable<Movie[]>{
     return this.http
-    .get<any>(`${this.apiUrl}/discover/movie?api_key=${this.apiKey}&language=es-MX&with_genres=${genre}`)
+    .get<any>(`${this.apiUrl}/discover/movie?api_key=${this.apiKey}&language=es-MX&with_genres=${genreId}`)
     .pipe(map((response) => this.transformMovies(response.results)));
   }
 

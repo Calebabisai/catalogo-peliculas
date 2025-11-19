@@ -1,10 +1,28 @@
-<!-- Condicionales -->
 <input
    type="text"
    placeholder="Buscar peliculas"
    [value]="searchTerm()"
    (input)="searchTerm.set($event.target.value); onSearch()"
 >
+<!-- Filtros por género -->
+<div class="genres-filter">
+  <button
+    (click)="filterByGenre(0)"
+    [class.active]="selectedGenre() === 0"
+  >
+    Todos
+  </button>
+
+
+@for (genre of genres(); track genre.id) {
+   <button
+   (click)="filterByGenre(genre.id)"
+   [class.active]="selectedGenre() === genre.id"
+   >
+   {{ genre.name }}
+   </button>
+}
+</div>
 
 @if(loading()) {
     <p>Cargando...</p>
