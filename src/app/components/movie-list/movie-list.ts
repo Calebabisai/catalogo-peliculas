@@ -21,8 +21,9 @@ export class MovieList {
     {id:878, name: "Ciencia ficcion"},
     {id:18, name: "Drama"},
     {id:27, name: "Terror"},
-    {id:12, name: "Romance"},
+    {id:10749, name: "Romance"},
     {id:35, name: "Comedia"},
+    {id:12, name: "Aventura" }
   ]);
   selectedGenre = signal<number>(0);
   
