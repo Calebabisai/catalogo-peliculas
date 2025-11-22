@@ -1,23 +1,23 @@
 <div class="movie-card">
   <div class="card-image">
-    <img [src]="movie.poster" [alt]="movie.titulo" loading="lazy">
+    <img [src]="movie().poster" [alt]="movie().titulo" loading="lazy">
     <div class="rating-badge">
-      ⭐ {{ movie.calificacion}}
+      ⭐ {{ movie().calificacion}}
     </div>
   </div>
 
   <div class="card-content">
-    <h3 class="card-title">{{ movie.titulo }}</h3>
-    <p class="card-year">{{ movie.lanzamiento}}</p>
+    <h3 class="card-title">{{ movie().titulo }}</h3>
+    <p class="card-year">{{ movie().lanzamiento}}</p>
     
     <div class="card-genres">
-      @for (genre of movie.genero.slice(0, 2); track genre) {
+      @for (genre of movie().genero.slice(0, 2); track genre) {
         <span class="genre-tag">{{ genre }}</span>
       }
     </div>
 
-    <p class="card-overview">{{ movie.sinopsis | truncate:100:'...' }}</p>
+    <p class="card-overview">{{ movie().sinopsis | truncate:100:'...' }}</p>
     
-    <button class="btn-details">Ver Detalles</button>
+    <button class="btn-details" [routerLink]="['/movie', movie().id]">Ver Detalles</button>
   </div>
 </div>

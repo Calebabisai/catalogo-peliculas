@@ -1,1 +1,44 @@
-<p>movie-detail works!</p>
+<div class="detail-container">
+  <a routerLink="/" class="back-link">← Volver al catálogo</a>
+
+  @if (loading()) {
+    <div class="loading">Cargando detalles...</div>
+  }
+
+  @if (movie(); as m) {
+    <div class="movie-hero">
+      <!-- Columna Izquierda: Poster -->
+      <div class="poster-wrapper">
+        <img [src]="m.poster" [alt]="m.titulo" class="detail-poster">
+      </div>
+
+      <!-- Columna Derecha: Info -->
+      <div class="movie-info">
+        <h1 class="movie-title">{{ m.titulo }}</h1>
+        
+        <div class="meta-row">
+          <span class="year">{{ m.lanzamiento }}</span>
+          <span class="rating">⭐ {{ m.calificacion }}/10</span>
+        </div>
+
+        <div class="genres-list">
+          @for (genre of m.genero; track genre) {
+            <span class="genre-pill">{{ genre }}</span>
+          }
+        </div>
+
+        <div class="section">
+          <h3>Sinopsis</h3>
+          <p class="overview">{{ m.sinopsis }}</p>
+        </div>
+        
+        <!-- Aquí pondremos el botón de favoritos más tarde -->
+        <div class="actions">
+          <button class="btn-favorite">
+                Agregar a Favoritos
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
