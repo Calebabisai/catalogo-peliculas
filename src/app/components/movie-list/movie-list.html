@@ -1,37 +1,61 @@
-<input
-   type="text"
-   placeholder="Buscar peliculas"
-   [value]="searchTerm()"
-   (input)="searchTerm.set($event.target.value); onSearch()"
->
-<!-- Filtros por género -->
-<div class="genres-filter">
-  <button
-    (click)="filterByGenre(0)"
-    [class.active]="selectedGenre() === 0"
-  >
-    Todos
-  </button>
+<div class="container">
+  <!-- Header con Buscador -->
+  <header class="list-header">
+    <div class="search-wrapper">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar películas..."
+        [value]="searchTerm()"
+        (input)="searchTerm.set($event.target.value); onSearch()"
+      >
+      <span class="search-icon"></span>
+    </div>
+  </header>
 
+  <!-- Filtros por género -->
+  <div class="genres-filter">
+    <button
+      class="genre-btn"
+      (click)="filterByGenre(0)"
+      [class.active]="selectedGenre() === 0"
+    >
+      Todos
+    </button>
 
-@for (genre of genres(); track genre.id) {
-   <button
-   (click)="filterByGenre(genre.id)"
-   [class.active]="selectedGenre() === genre.id"
-   >
-   {{ genre.name }}
-   </button>
-}
+    @for (genre of genres(); track genre.id) {
+      <button
+        class="genre-btn"
+        (click)="filterByGenre(genre.id)"
+        [class.active]="selectedGenre() === genre.id"
+      >
+        {{ genre.name }}
+      </button>
+    }
+  </div>
+
+  <!-- Estados de Carga y Error -->
+  @if(loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando películas...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <p class="error-msg">{{error()}}</p>
+  }
+
+  <!-- Grid de Películas -->
+  <div class="movies-grid">
+    @for (movie of movies(); track movie.id) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
+  </div>
+  
+  @if (!loading() && movies().length === 0) {
+    <div class="empty-state">
+      <p>No se encontraron películas.</p>
+    </div>
+  }
 </div>
-
-@if(loading()) {
-    <p>Cargando...</p>
- }
-
- @if (error()) {
-    <p class="error">{{error()}}</p>
- }
-
- @for (movie of movies(); track movie.id) {
-    <app-movie-card [movie]="movie"></app-movie-card>
- }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie-model/movie-model-module';
 import { Observable, map } from 'rxjs';
@@ -12,7 +12,7 @@ export class MovieService {
   private apiUrl = environment.tmdbApiUrl;
   private imageBaseUrl = environment.tmdbImageBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getMovies(): Observable<Movie[]>{
     return this.http

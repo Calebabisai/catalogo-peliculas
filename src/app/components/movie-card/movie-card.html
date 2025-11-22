@@ -1,17 +1,23 @@
 <div class="movie-card">
-   <!-- Imagen -->
-    <img [src]="movie.poster" [alt]="movie.titulo">
+  <div class="card-image">
+    <img [src]="movie.poster" [alt]="movie.titulo" loading="lazy">
+    <div class="rating-badge">
+      ⭐ {{ movie.calificacion}}
+    </div>
+  </div>
 
-    <!-- Titulo-->
-     <h3>{{ movie.titulo }}</h3>
-    <!--Calificacion-->
-     <p>⭐ {{ movie.calificacion }}/10</p>
+  <div class="card-content">
+    <h3 class="card-title">{{ movie.titulo }}</h3>
+    <p class="card-year">{{ movie.lanzamiento}}</p>
+    
+    <div class="card-genres">
+      @for (genre of movie.genero.slice(0, 2); track genre) {
+        <span class="genre-tag">{{ genre }}</span>
+      }
+    </div>
 
-     <!--Anio de lanzamiento-->
-    <p>Lanzamiento: {{ movie.lanzamiento }}</p>
-
-    <!--Generos-->
-    <p>Genero: {{ movie.genero.join(', ') }}</p>
-
-    <!--Sinopsis corta-->
-    <p>Sinopsis: {{ movie.sinopsis | truncate:150:'...'}}</p>
+    <p class="card-overview">{{ movie.sinopsis | truncate:100:'...' }}</p>
+    
+    <button class="btn-details">Ver Detalles</button>
+  </div>
+</div>
