@@ -1,38 +1,45 @@
+<!-- Contenedor principal de la vista de detalles -->
 <div class="detail-container">
+  <!-- Enlace para regresar a la página principal -->
   <a routerLink="/" class="back-link">← Volver al catálogo</a>
 
+  <!-- Mostrar mensaje de carga mientras loading() sea true -->
   @if (loading()) {
     <div class="loading">Cargando detalles...</div>
   }
 
+  <!-- Mostrar el contenido solo si movie() tiene datos. Asignamos el valor a la variable 'm' -->
   @if (movie(); as m) {
     <div class="movie-hero">
-      <!-- Columna Izquierda: Poster -->
+      <!-- Columna Izquierda: Póster de la película -->
       <div class="poster-wrapper">
         <img [src]="m.poster" [alt]="m.titulo" class="detail-poster">
       </div>
 
-      <!-- Columna Derecha: Info -->
+      <!-- Columna Derecha: Información detallada -->
       <div class="movie-info">
         <h1 class="movie-title">{{ m.titulo }}</h1>
         
+        <!-- Fila con metadatos: Año y Calificación -->
         <div class="meta-row">
           <span class="year">{{ m.lanzamiento }}</span>
           <span class="rating">⭐ {{ m.calificacion }}/10</span>
         </div>
 
+        <!-- Lista de géneros iterada con @for -->
         <div class="genres-list">
           @for (genre of m.genero; track genre) {
             <span class="genre-pill">{{ genre }}</span>
           }
         </div>
 
+        <!-- Sección de Sinopsis -->
         <div class="section">
           <h3>Sinopsis</h3>
           <p class="overview">{{ m.sinopsis }}</p>
         </div>
         
-        <!-- Aquí pondremos el botón de favoritos más tarde -->
+        <!-- Botones de acción (Favoritos) -->
         <div class="actions">
           <button class="btn-favorite">
                 Agregar a Favoritos

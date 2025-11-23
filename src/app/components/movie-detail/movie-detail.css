@@ -1,3 +1,4 @@
+/* Contenedor principal centrado y con ancho máximo */
 .detail-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -5,6 +6,7 @@
   color: var(--text-main);
 }
 
+/* Enlace de regreso con efecto hover */
 .back-link {
   display: inline-block;
   margin-bottom: 2rem;
@@ -18,13 +20,15 @@
   color: var(--primary-color);
 }
 
+/* Layout principal usando Grid: 300px para el póster, el resto para info */
 .movie-hero {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 3rem;
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.5s ease; /* Animación de entrada suave */
 }
 
+/* Contenedor del póster con bordes redondeados y sombra */
 .poster-wrapper {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -37,12 +41,14 @@
   display: block;
 }
 
+/* Columna de información flexible */
 .movie-info {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
+/* Título con efecto de gradiente metálico */
 .movie-title {
   /* ... otras propiedades ... */
   background: linear-gradient(to right, #fff, #94a3b8);
@@ -51,6 +57,7 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Fila de metadatos (año, rating) */
 .meta-row {
   display: flex;
   align-items: center;
@@ -60,10 +67,11 @@
 }
 
 .rating {
-  color: #fbbf24;
+  color: #fbbf24; /* Color dorado para la estrella */
   font-weight: 600;
 }
 
+/* Lista de géneros como etiquetas (pills) */
 .genres-list {
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +82,7 @@
   background-color: var(--background-card);
   border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
-  border-radius: 999px;
+  border-radius: 999px; /* Bordes completamente redondos */
   font-size: 0.875rem;
 }
 
@@ -90,6 +98,7 @@
   font-size: 1.05rem;
 }
 
+/* Botón de favoritos con estilo primario */
 .btn-favorite {
   background-color: var(--secondary-color);
   color: white;
@@ -109,12 +118,13 @@
   box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
 }
 
+/* Definición de la animación de entrada */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive: En móviles, una sola columna */
+/* Diseño Responsivo: En móviles (menos de 768px), cambiamos a una sola columna */
 @media (max-width: 768px) {
   .movie-hero {
     grid-template-columns: 1fr;
